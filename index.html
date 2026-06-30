@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress Pro - Track Your Growth</title>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Premium Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Track your daily progress, missions, and learning streaks with style" />
+  
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-animation"></div>
+  
+  <!-- Floating Particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <h1>Progress Pro</h1>
+      <p><span class="icon">🚀</span> Daily missions, learning & streaks</p>
+    </header>
+
+    <!-- Auth Section - Login -->
+    <section id="authSection" class="glass-card auth-box">
+      <div class="welcome-text">
+        <h2>Welcome Back!</h2>
+        <p>Enter your name to continue your journey</p>
+      </div>
+      <input 
+        id="username" 
+        type="text" 
+        placeholder="Your name..." 
+        autocomplete="name"
+        aria-label="Enter your name"
+      />
+      <button id="loginBtn" class="btn-primary btn-full">
+        <span>🎯</span> Start Tracking
+      </button>
+    </section>
+
+    <!-- Auth Section - Logged In -->
+    <section id="userSection" class="glass-card auth-box hidden">
+      <div class="user-info">
+        <div class="user-profile">
+          <div class="avatar" id="userAvatar">U</div>
+          <div class="user-details">
+            <h3 id="displayName">User</h3>
+            <p>Keep pushing forward! 💪</p>
+          </div>
+        </div>
+        <div class="streak-badge">
+          <span class="fire">🔥</span>
+          <div>
+            <span class="count" id="streakCount">0</span>
+            <span class="label">Day Streak</span>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group" style="margin-top: 16px;">
+        <button id="logoutBtn" class="btn-secondary">
+          <span>👋</span> Logout
+        </button>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="hidden">
+      <!-- Stats Bar -->
+      <div class="stats-bar">
+        <div class="stat-card">
+          <div class="value" id="totalEntries">0</div>
+          <div class="label">Total Entries</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="todayEntries">0</div>
+          <div class="label">Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="categoryCount">0</div>
+          <div class="label">Categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="weekEntries">0</div>
+          <div class="label">This Week</div>
+        </div>
+      </div>
+
+      <!-- Categories Section -->
+      <div class="glass-card panel">
+        <div class="top-row">
+          <h2><span class="icon">📂</span> Categories</h2>
+          <button id="addCategoryBtn" class="btn-secondary">
+            <span>➕</span> Add New
+          </button>
+        </div>
+        <div id="categories" class="categories" role="listbox" aria-label="Categories"></div>
+      </div>
+
+      <!-- Entry Input Section -->
+      <div class="glass-card panel">
+        <h3><span class="icon">✍️</span> <span id="selectedCategoryTitle">Select a category</span></h3>
+        <textarea 
+          id="entryText" 
+          placeholder="What did you accomplish today? Share your progress, learnings, or thoughts..."
+          aria-label="Write your progress entry"
+        ></textarea>
+        <button id="saveEntryBtn" class="btn-primary btn-full">
+          <span>💾</span> Save Entry
+        </button>
+      </div>
+
+      <!-- Entries List Section -->
+      <div class="glass-card panel">
+        <h3><span class="icon">📝</span> Your Entries</h3>
+        <div id="entriesList" class="entries" role="list" aria-label="Saved entries"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Add Category Dialog -->
+  <dialog id="categoryDialog" aria-labelledby="dialogTitle">
+    <form method="dialog" class="dialog-form">
+      <h3 id="dialogTitle">✨ Create New Category</h3>
+      <input 
+        id="newCategoryName" 
+        type="text" 
+        placeholder="Category name (e.g., Reading, Meditation...)" 
+        aria-label="New category name"
+      />
+      <div class="dialog-actions">
+        <button value="cancel" class="btn-secondary" type="button" id="cancelDialogBtn">Cancel</button>
+        <button id="createCategoryBtn" class="btn-primary" type="submit">Create</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
